@@ -25,7 +25,7 @@ namespace ScrapeCrypto
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("rickv4555@gmail.com", "Python2$2");
+            smtp.Credentials = new System.Net.NetworkCredential("rickv4555@gmail.com", "/*password goes here*/");
             smtp.Send(mail);
         }
     }
