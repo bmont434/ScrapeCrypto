@@ -19,13 +19,19 @@ namespace ScrapeCrypto
 
     public partial class CryptoPrice : Form
     {
+        //The amount of times the program will scrape
         public int Count {get; set;}
+
         System.Windows.Forms.Timer mytimer;
         public CryptoPrice()
         {
             InitializeComponent();
            Count = 0;
+
+           //creating timer to execute scrape method every 30 minutes
            mytimer = new System.Windows.Forms.Timer();
+
+           //1800000 milliseconds = 30 minutes
            mytimer.Interval = 1800000;
            mytimer.Tick += timer_tick;
            mytimer.Start();
@@ -34,10 +40,10 @@ namespace ScrapeCrypto
         private void timer_tick(object sender, EventArgs e)
         {
             Database db = new Database();
-            if (Count < 2)
+            if (Count < 100)
             {
                 Count++;
-                ScrapeC();
+                Scrape();
                 PriceCheck();
 
                 string sqlEth = "Insert into CryptoData (CoinName, Price) VALUES ('Ethereum', '" + txtEthereum.Text + "');";
@@ -49,7 +55,7 @@ namespace ScrapeCrypto
             } 
         }
 
-        public void ScrapeC()
+        public void Scrape()
         {
             FirefoxOptions option = new FirefoxOptions();
             option.AddArguments("--headless");
@@ -71,27 +77,23 @@ namespace ScrapeCrypto
 
         public void PriceCheck()
         {
-            SendMail sm = new SendMail();
+            //this method sends an email if the price fits certain parameters
+            Mail Ml = new Mail();
             decimal Eth = decimal.Parse(txtEthereum.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
             decimal Bit = decimal.Parse(txtBitcoin.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
 
             if (Bit < 1000 && Eth < 150 || Eth > 500 && Bit < 1000)
             {
-                sm.SendEmail("Bitcoin and Ethereum");
+                Ml.SendEmail("Bitcoin and Ethereum");
             }
             else if (Eth < 150 || Eth > 500)
             {
-                sm.SendEmail("Ethereum");
+                Ml.SendEmail("Ethereum");
             }
             else if (Bit < 1000)
             {
-                sm.SendEmail("Bitcoin");
+                Ml.SendEmail("Bitcoin");
             }
-        }
-
-        public void btnScrape_Click(object sender, EventArgs e)
-        {
-           
         }
 
         public void txtBitcoin_TextChanged(object sender, EventArgs e)

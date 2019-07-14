@@ -30,7 +30,6 @@
         {
             this.txtBitcoin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnScrape = new System.Windows.Forms.Button();
             this.Ethereum = new System.Windows.Forms.Label();
             this.txtEthereum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -52,16 +51,6 @@
             this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Bitcoin";
-            // 
-            // btnScrape
-            // 
-            this.btnScrape.Location = new System.Drawing.Point(80, 123);
-            this.btnScrape.Name = "btnScrape";
-            this.btnScrape.Size = new System.Drawing.Size(75, 31);
-            this.btnScrape.TabIndex = 2;
-            this.btnScrape.Text = "Scrape";
-            this.btnScrape.UseVisualStyleBackColor = true;
-            this.btnScrape.Click += new System.EventHandler(this.btnScrape_Click);
             // 
             // Ethereum
             // 
@@ -89,7 +78,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtEthereum);
             this.Controls.Add(this.Ethereum);
-            this.Controls.Add(this.btnScrape);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBitcoin);
             this.Name = "CryptoPrice";
@@ -103,7 +91,6 @@
 
         private System.Windows.Forms.TextBox txtBitcoin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnScrape;
         private System.Windows.Forms.Label Ethereum;
         private System.Windows.Forms.TextBox txtEthereum;
     }

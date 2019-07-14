@@ -12,7 +12,7 @@ using System.Net.Mime;
 
 namespace ScrapeCrypto
 {
-    public class SendMail
+    public class Mail
     {
         public void SendEmail(string coin)
         {
